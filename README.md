@@ -6,7 +6,7 @@ This is the base project structure for any Arduino code that uses the CAN bus ne
 
 1. Clone the repo.
     1. If you have git in the terminal, run `git clone https://github.com/ku-solar-car/canskeleton.git`.
-    2. Otherwise, click download .zip file.
+    2. Otherwise, click the download code button.
 2. Edit the `canskeleton.ino` file.
 
 ## Can I rename the .ino file?
@@ -21,7 +21,7 @@ The other .cpp and .h files are from a library from the manufacturer. They don't
 
 CAN messages are sent using the `canTx` function. Most of the code is in a block like this:
 
-```arduino
+```c
 byte port = 0; // Or 1
 long msgId = 0x700; // Choose an ID that is unique. Anything about 0x700 should be good
 byte txData[] = {0x0, 0x1}; // Set the data you want to send
@@ -34,7 +34,7 @@ if (canTx(port, msgId, false, txData, length) == CAN_OK) {
 
 ## How do I receive CAN messages?
 
-```arduino
+```c
 byte port = 0; // Or 1
 long msgId; // This will hold the array of the CAN frame
 bool extendedFormat; // This will tell if the message ID is long
