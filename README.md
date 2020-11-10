@@ -17,7 +17,24 @@ Only if you rename the folder to have the same name. So `canskeleton.ino` needs 
 
 The other .cpp and .h files are from a library from the manufacturer. They don't need to be changed. Probably don't change them :)
 
-## How do I send CAN messages?
+## void setup()
+
+This function is where we do the configuration for the Arduino. This runs once as the startup of the device, so just do one time setup stuff. There is already one `canInit` block in there that can be used.
+
+### Setting up input and output pins
+
+When you need to use a pin, use the `pinMode` function to configure it.
+
+```c
+pinMode(RELAY_PIN, OUTPUT); // Or INPUT for input pins
+digitalWrite(RELAY_PIN, HIGH); // Or LOW, write a starting value
+```
+
+## void loop()
+
+This is where we put code that will be repeated. This is where you will do the bulk of the work.
+
+### How do I send CAN messages?
 
 CAN messages are sent using the `canTx` function. Most of the code is in a block like this:
 
@@ -32,7 +49,7 @@ if (canTx(port, msgId, false, txData, length) == CAN_OK) {
 }
 ```
 
-## How do I receive CAN messages?
+### How do I receive CAN messages?
 
 ```c
 byte port = 0; // Or 1
